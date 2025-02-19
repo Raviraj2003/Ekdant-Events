@@ -1,0 +1,182 @@
+*{
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+.nav-bar{
+    height: 60px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0px;
+    box-shadow: 5px 5px 5px 5px rgba(7, 7, 7, 0.133);
+    
+}
+
+.nav-logo{
+    height: 60px;
+    width: 100px;
+}
+.logo{
+    background-image: url(img/logo.png);
+    height: 100%;
+    width: 100%;
+    background-size: 200%;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-left: 10px;
+}
+.menu{
+    margin-right: 10px;
+    font-size: 30px;
+
+}
+
+/* Your existing CSS remains unchanged */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -300px; /* Start hidden on the left */
+    width: 300px;  /* Sidebar width */
+    height: 100%;
+    background-color: #333;
+    color: white;
+    padding-top: 60px;
+    transition: left 0.5s ease-in-out; /* Smooth slide animation */
+}
+
+/* When sidebar is active */
+.sidebar.active {
+    left: 0;
+}
+
+/* Sidebar Logo */
+.sidebar .sidebar-logo {
+    width: 120px; /* Adjust size */
+    height: 120px;
+    background-image: url(img/logo.png);
+    background-size: 200%;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 10px auto; /* Centering the logo */
+}
+
+/* Sidebar Links */
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #444;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 22px;
+    display: block;
+}
+
+.sidebar ul li a:hover {
+    background-color: #555;
+}
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.hero-section{
+    height: 600px;
+    background-image: url(img/hero-image.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+}
+
+.hero-title{
+    color: #2c033b;
+    border-color: #333;
+    font-size: 80px;
+    font-family: 'Playfair Display' , sans-serif;
+
+}
+.sub-title{
+    color: black;
+    font-size: 40px;
+    font-family: 'Lobster', sans-serif;
+
+}
+                /* buttons of decorations start here */
+
+.border {
+    border: 1.5px solid black; 
+    transition: border 0.3s ease-in-out; 
+}
+.border:hover{
+    border: 1.5px solid white;
+}
+
+
+.buttons{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.button{
+    height: 100px;
+    width: 330px;
+    border-radius: 35px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-family: 'Playfair Display', sans-serif ;
+    font-size: 20px;
+    
+}
+
+
+
+
+
+
+
+
+
+@media (max-width: 768px){
+    .hero-section{
+        height: 250px;
+        
+    }
+    .hero-message{
+        font-size: 20px;
+        
+
+
+    }
+
+    .hero-title{
+        font-size: 30px;
+    }
+    .sub-title{
+        font-size: 15px;
+    }
+
+    
+
+}
