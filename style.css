@@ -180,3 +180,106 @@
     
 
 }
+
+
+
+/* birthday decoration CSS  starts hear ------------------------------------------- */
+
+.shop-section{
+    display: flex;
+    justify-content: space-evenly ;
+    flex-wrap: wrap;
+
+}
+
+.box{
+    
+    height: 400px;
+    width: 400px;
+    background-color: white;
+    padding: 0px 0px 0px;
+    margin-top: 30px;
+    border: 1px solid #ddd;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    
+}
+
+
+.box_image{
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100%;
+    
+    
+}
+.box_image a{
+    font-size: large;
+    background-color: black;
+    color: white;
+}
+
+
+
+
+
+@media (max-width: 768px){
+
+    .shop-section{
+        
+    }
+
+    .box{
+    
+        height: 300px;
+        width: 100%;
+        background-color: white;
+        border: 1px solid #ddd;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+        
+    }
+    
+    
+    .box_image{
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 100%;
+        
+        
+        
+        
+    }
+    .box_image a{
+        font-size: larger;
+        
+    }
+
+}
+
+
+
+/* CONTACT SECTION START HEAR ------------------------------------------------------- */
+
+.hero-img{
+    height: 600px;
+    background-image: url(contact/contact\ hero\ image.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+
+
+@media (max-width: 768px){
+
+    .hero-img{
+        height: 180px;
+        
+    }
+
+}
