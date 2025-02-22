@@ -103,5 +103,19 @@
     "image": "img/birthday decoration img/1.jpg ",
     "category": "NamingCeremony",
     "description": "Simple and elegant naming ceremony setup"
+  },
+  {
+    "name": "hhh",
+    "price": "Rs. 333",
+    "image": "img/babyshower/1740246960637_IMG-20250128-WA0007[1].jpg",
+    "category": "BabyShower",
+    "description": "111"
+  },
+  {
+    "name": "hhh",
+    "price": "Rs. 333",
+    "image": "img/otherdecoration/1740248468215_Capture.JPG",
+    "category": "OtherDecorations",
+    "description": "111"
   }
 ]
