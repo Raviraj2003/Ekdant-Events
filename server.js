@@ -8,6 +8,7 @@ const port = 3000;
 // Middleware
 app.use(express.json());
 app.use(express.static(__dirname));
+app.use('/img', express.static(path.join(__dirname, 'img')));
 
 // Configure multer for file upload
 const storage = multer.diskStorage({
