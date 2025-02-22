@@ -159,7 +159,7 @@
   }
 }
 
-/* birthday decoration CSS  starts hear ------------------------------------------- */
+/* birthday decoration CSS  starts here ------------------------------------------- */
 
 .shop-section {
   display: flex;
@@ -212,41 +212,86 @@
   }
 }
 
-/* CONTACT SECTION START HEAR ------------------------------------------------------- */
-
-.hero-img {
-  height: 600px;
-  background-image: url(./img/contact/contact\ hero\ image.jpg);
+/* CONTACT SECTION START HERE ------------------------------------------------------- */
+.hero-section2{
+  background-image: url(img/contact/img1.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+.hero-img {
+  height: 600px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  text-align: center;
+  justify-content: center;
+  margin-top: 10px;
+  font-size: 25px;
+  box-shadow: 10px 10px 20px rgba(0.5, 0.5, 0.5, 0.5); border-radius: 10px;
+}
+.hero-img h1{
+    margin-bottom: 40px;
+    color: white;
+    text-shadow: 4px 4px 10px gray;
+    font-size: 60px;
+    
+    
+}
+.hero-section2 i{
+    font-size: 50px;
+    text-shadow: 4px 4px 10px white;
+}
+.hero-section2 a{
+  margin-left: 30px;
+  color: black;
+  text-shadow: 4px 4px 10px white;
+}
+.adjust{
+  width: 400px;
 }
 
-.contact {
-  margin-top: 20px;
-  font-size: 20px;
-}
-.contact i {
-  font-size: 20px;
-}
-.wp-btn {
-  font-size: 20px;
-}
-.address {
+.c{
   display: flex;
+  align-items: center;
+  margin-left: 25px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
 }
+
+
 .map {
   display: flex;
   justify-content: center;
-  width: 100%;
+  margin-top: 20px;
 }
+
 
 @media (max-width: 768px) {
   .hero-img {
-    height: 180px;
+    height: 350px; 
+    font-size: 16px; 
+  }
+
+  .hero-img h1 {
+    font-size: 30px;
+    margin-bottom: 20px;
+    margin-left: 55px;
+  }
+
+  .hero-section2 i {
+    font-size: 30px;
+  }
+
+  .hero-section2 a {
+    font-size: 16px;
+    margin-left: 10px;
+  }
+
+  .adjust {
+    width: 100%; 
+    max-width: 300px;
   }
 }
+
+
+
