@@ -1,306 +1,252 @@
-*{
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
 }
 
-.nav-bar{
-    height: 60px;
-    background-color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 0px;
-    box-shadow: 5px 5px 5px 5px rgba(7, 7, 7, 0.133);
-    
+.nav-bar {
+  height: 60px;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0px;
+  box-shadow: 5px 5px 5px 5px rgba(7, 7, 7, 0.133);
 }
 
-.nav-logo{
-    height: 60px;
-    width: 100px;
+.nav-logo {
+  height: 60px;
+  width: 100px;
 }
-.logo{
-    background-image: url(img/logo.png);
-    height: 100%;
-    width: 100%;
-    background-size: 200%;
-    background-position: center;
-    background-repeat: no-repeat;
-    margin-left: 10px;
+.logo {
+  background-image: url(img/logo.png);
+  height: 100%;
+  width: 100%;
+  background-size: 200%;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-left: 10px;
 }
-.menu{
-    margin-right: 10px;
-    font-size: 30px;
-
+.menu {
+  margin-right: 10px;
+  font-size: 30px;
 }
 
 /* Your existing CSS remains unchanged */
 
 .sidebar {
-    position: fixed;
-    top: 0;
-    left: -300px; /* Start hidden on the left */
-    width: 300px;  /* Sidebar width */
-    height: 100%;
-    background-color: #333;
-    color: white;
-    padding-top: 60px;
-    transition: left 0.5s ease-in-out; /* Smooth slide animation */
+  position: fixed;
+  top: 0;
+  left: -300px; /* Start hidden on the left */
+  width: 300px; /* Sidebar width */
+  height: 100%;
+  background-color: #333;
+  color: white;
+  padding-top: 60px;
+  transition: left 0.5s ease-in-out; /* Smooth slide animation */
 }
 
 /* When sidebar is active */
 .sidebar.active {
-    left: 0;
+  left: 0;
 }
 
 /* Sidebar Logo */
 .sidebar .sidebar-logo {
-    width: 120px; /* Adjust size */
-    height: 120px;
-    background-image: url(img/logo.png);
-    background-size: 200%;
-    background-repeat: no-repeat;
-    background-position: center;
-    margin: 10px auto; /* Centering the logo */
+  width: 120px; /* Adjust size */
+  height: 120px;
+  background-image: url(img/logo.png);
+  background-size: 200%;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 10px auto; /* Centering the logo */
 }
 
 /* Sidebar Links */
 .sidebar ul {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 .sidebar ul li {
-    padding: 20px;
-    text-align: center;
-    border-bottom: 1px solid #444;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid #444;
 }
 
 .sidebar ul li a {
-    text-decoration: none;
-    color: white;
-    font-size: 22px;
-    display: block;
+  text-decoration: none;
+  color: white;
+  font-size: 22px;
+  display: block;
 }
 
 .sidebar ul li a:hover {
-    background-color: #555;
+  background-color: #555;
 }
 
 /* Close Button */
 .close-btn {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    font-size: 30px;
-    cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 30px;
+  cursor: pointer;
 }
 
-.hero-section{
-    height: 600px;
-    background-image: url(img/hero-image.jpg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    
+.hero-section {
+  height: 600px;
+  background-image: url(img/hero-image.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
-.hero-title{
-    color: #2c033b;
-    border-color: #333;
-    font-size: 80px;
-    font-family: 'Playfair Display' , sans-serif;
-
+.hero-title {
+  color: #2c033b;
+  border-color: #333;
+  font-size: 80px;
+  font-family: "Playfair Display", sans-serif;
 }
-.sub-title{
-    color: black;
-    font-size: 40px;
-    font-family: 'Lobster', sans-serif;
-
+.sub-title {
+  color: black;
+  font-size: 40px;
+  font-family: "Lobster", sans-serif;
 }
-                /* buttons of decorations start here */
+/* buttons of decorations start here */
 
 .border {
-    border: 1.5px solid black; 
-    transition: border 0.3s ease-in-out; 
+  border: 1.5px solid black;
+  transition: border 0.3s ease-in-out;
 }
-.border:hover{
-    border: 1.5px solid white;
-}
-
-
-.buttons{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+.border:hover {
+  border: 1.5px solid white;
 }
 
-.button{
-    height: 100px;
-    width: 330px;
-    border-radius: 35px;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    font-family: 'Playfair Display', sans-serif ;
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.button {
+  height: 100px;
+  width: 330px;
+  border-radius: 35px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-family: "Playfair Display", sans-serif;
+  font-size: 20px;
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    height: 250px;
+  }
+  .hero-message {
     font-size: 20px;
-    
+  }
+
+  .hero-title {
+    font-size: 30px;
+  }
+  .sub-title {
+    font-size: 15px;
+  }
 }
-
-
-
-
-
-
-
-
-
-@media (max-width: 768px){
-    .hero-section{
-        height: 250px;
-        
-    }
-    .hero-message{
-        font-size: 20px;
-        
-
-
-    }
-
-    .hero-title{
-        font-size: 30px;
-    }
-    .sub-title{
-        font-size: 15px;
-    }
-
-    
-
-}
-
-
 
 /* birthday decoration CSS  starts hear ------------------------------------------- */
 
-.shop-section{
-    display: flex;
-    justify-content: space-evenly ;
-    flex-wrap: wrap;
-
+.shop-section {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 
-.box{
-    
-    height: 400px;
-    width: 400px;
+.box {
+  height: 400px;
+  width: 400px;
+  background-color: white;
+  padding: 0px 0px 0px;
+  margin-top: 30px;
+  border: 1px solid #ddd;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.box_image {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100%;
+}
+.box_image a {
+  font-size: large;
+  background-color: black;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .shop-section {
+  }
+
+  .box {
+    height: 300px;
+    width: 100%;
     background-color: white;
-    padding: 0px 0px 0px;
-    margin-top: 30px;
     border: 1px solid #ddd;
-        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
-    
-}
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  }
 
-
-.box_image{
+  .box_image {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     height: 100%;
-    
-    
+  }
+  .box_image a {
+    font-size: larger;
+  }
 }
-.box_image a{
-    font-size: large;
-    background-color: black;
-    color: white;
-}
-
-
-
-
-
-@media (max-width: 768px){
-
-    .shop-section{
-        
-    }
-
-    .box{
-    
-        height: 300px;
-        width: 100%;
-        background-color: white;
-        border: 1px solid #ddd;
-        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
-        
-    }
-    
-    
-    .box_image{
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-        height: 100%;
-        
-        
-        
-        
-    }
-    .box_image a{
-        font-size: larger;
-        
-    }
-
-}
-
-
 
 /* CONTACT SECTION START HEAR ------------------------------------------------------- */
 
-.hero-img{
-    height: 600px;
-    background-image: url(contact/contact\ hero\ image.jpg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+.hero-img {
+  height: 600px;
+  background-image: url(./img/contact/contact\ hero\ image.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
-.contact{
-    margin-top: 20px;
-    font-size: 20px;
+.contact {
+  margin-top: 20px;
+  font-size: 20px;
 }
-.contact i{
-    font-size: 20px;
+.contact i {
+  font-size: 20px;
 }
-.wp-btn{
-    font-size: 20px;
+.wp-btn {
+  font-size: 20px;
 }
-.address{
-    display: flex;
+.address {
+  display: flex;
 }
-.map{
-    display: flex;
-    justify-content: center;
-    width: 100%;
+.map {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
-
-
-
-
-@media (max-width: 768px){
-
-    .hero-img{
-        height: 180px;
-        
-    }
-
+@media (max-width: 768px) {
+  .hero-img {
+    height: 180px;
+  }
 }

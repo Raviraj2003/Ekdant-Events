@@ -1,61 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-
-
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <div>
-        <header>
-            <div class="nav-bar">
-                <div class="nav-logo ">
-                    <div class="logo" onclick="location.href='index.html'"></div>
-                </div>
-                <div class="menu"><i class="fa-solid fa-bars"></i></div>
+      <header>
+        <div class="nav-bar">
+          <div class="nav-logo">
+            <div class="logo" onclick="location.href='index.html'"></div>
+          </div>
+          <div class="menu"><i class="fa-solid fa-bars"></i></div>
+        </div>
+        <!-- Sidebar Menu -->
+        <div class="sidebar">
+          <span class="close-btn">&times;</span>
+          <!-- Close button -->
+          <div class="sidebar-logo"></div>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="hero-section">
+          <div class="hero-message">
+            <h2 class="hero-title">EKDANT EVENTS</h2>
+            <p class="sub-title">We Create Dreams Into Reality</p>
+          </div>
+        </div>
+        <div class="buttons">
+          <button
+            class="button border"
+            onclick="location.href='BirthdayDecoration.html'"
+          >
+            <div class="menu">
+              <i class="fa-solid fa-cake-candles" style="color: #f05656"></i>
             </div>
-              <!-- Sidebar Menu -->
-            <div class="sidebar">
-                <span class="close-btn">&times;</span> <!-- Close button -->
-                <div class="sidebar-logo"></div>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-
-            <div class="hero-section">
-                <div class="hero-message">
-                    <h2 class="hero-title">EKDANT EVENTS</h2>
-                    <p class="sub-title">We Create Dreams Into Reality</p>
-                </div>
-            </div>
-            <div class="buttons">
-                <button class="button border" onclick="location.href='birthday-decoration.html'"><div class="menu"><i class="fa-solid fa-cake-candles" style="color: #f05656;"></i></div>Birthday Decoration</button>
-                <button class="button border">Babyshower</button>
-                <button class="button border">Naming Ceremony</button>
-                <button class="button border">Wedding Decoration</button>
-                <button class="button border">Baby Welcome</button>
-                <button class="button border">Car Decoration</button>
-                <button class="button border">FireWorks & Machines</button>
-                <button class="button border">Other Decoration</button>
-
-
-            </div>
-        
-
-
-        </header>
+            Birthday Decoration
+          </button>
+          <button
+            class="button border"
+            onclick="location.href='BabyShower.html'"
+          >
+            Babyshower
+          </button>
+          <button class="button border">Naming Ceremony</button>
+          <button class="button border">Wedding Decoration</button>
+          <button class="button border">Baby Welcome</button>
+          <button class="button border">Car Decoration</button>
+          <button class="button border">FireWorks & Machines</button>
+          <button class="button border">Other Decoration</button>
+        </div>
+      </header>
     </div>
-    
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
