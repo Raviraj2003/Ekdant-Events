@@ -35,6 +35,8 @@ const upload = multer({ storage: storage });
 // API Endpoints
 app.post("/api/events", upload.single("image"), async (req, res) => {
   try {
+    console.log(req.body);
+    
     const { name, price, category, description } = req.body;
     const imagePath = req.file.path.replace(/\\/g, "/");
 
