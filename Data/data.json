@@ -1,0 +1,107 @@
+[
+  {
+    "name": "Princess Theme Birthday",
+    "price": "Rs. 15000",
+    "image": "img/birthday decoration img/1.jpg",
+    "category": "BirthdayDecoration",
+    "description": "Complete princess themed decoration with balloon arch, backdrop, and themed cake table setup"
+  },
+  {
+    "name": "Superhero Birthday Setup",
+    "price": "Rs. 12000",
+    "image": "img/birthday decoration img/1.jpg",
+    "category": "BirthdayDecoration",
+    "description": "Marvel/DC themed decoration with character cutouts and themed accessories"
+  },
+  {
+    "name": "Jungle Theme Birthday",
+    "price": "Rs. 18000",
+    "image": "img/birthday decoration img/1.jpg",
+    "category": "BirthdayDecoration",
+    "description": "Safari themed decoration with animal cutouts and green backdrop"
+  },
+  {
+    "name": "Mickey Mouse Theme",
+    "price": "Rs. 14000",
+    "image": "img/birthday decoration img/1.jpg",
+    "category": "BirthdayDecoration",
+    "description": "Disney themed decoration with Mickey Mouse elements and red-black color scheme"
+  },
+  {
+    "name": "Space Theme Birthday",
+    "price": "Rs. 16000",
+    "image": "img/birthday decoration img/1.jpg",
+    "category": "BirthdayDecoration",
+    "description": "Outer space themed setup with planets, stars, and LED lights"
+  },
+  {
+    "name": "Pink Elephant Theme",
+    "price": "Rs. 20000",
+    "image": "img/birthday decoration img/1.jpg ",
+    "category": "Babyshower",
+    "description": "Elegant pink elephant themed baby shower with floral arrangements"
+  },
+  {
+    "name": "Twinkle Star Theme",
+    "price": "Rs. 18000",
+    "image": "img/birthday decoration img/1.jpg ",
+    "category": "Babyshower",
+    "description": "Stars and moon themed decoration with fairy lights"
+  },
+  {
+    "name": "Teddy Bear Theme",
+    "price": "Rs. 22000",
+    "image": "img/birthday decoration img/1.jpg ",
+    "category": "BabyShower",
+    "description": "Cute teddy bear themed setup with pastel colors"
+  },
+  {
+    "name": "Rainbow Theme",
+    "price": "Rs. 19000",
+    "image": "img/birthday decoration img/1.jpg ",
+    "category": "BabyShower",
+    "description": "Colorful rainbow themed decoration with balloon arch"
+  },
+  {
+    "name": "Gender Reveal Setup",
+    "price": "Rs. 25000",
+    "image": "img/birthday decoration img/1.jpg ",
+    "category": "BabyShower",
+    "description": "Special gender reveal party setup with pink and blue theme"
+  },
+  {
+    "name": "Traditional Naming Setup",
+    "price": "Rs. 30000",
+    "image": "img/birthday decoration img/1.jpg ",
+    "category": "NamingCeremony",
+    "description": "Traditional Indian naming ceremony decoration with mandap"
+  },
+  {
+    "name": "Modern Naming Decor",
+    "price": "Rs. 25000",
+    "image": "img/birthday decoration img/1.jpg ",
+    "category": "NamingCeremony",
+    "description": "Contemporary style naming ceremony setup with modern elements"
+  },
+  {
+    "name": "Royal Naming Theme",
+    "price": "Rs. 35000",
+    "image": "img/birthday decoration img/1.jpg ",
+    "category": "NamingCeremony",
+    "description": "Royal themed naming ceremony with golden accents"
+  },
+  {
+    "name": "Floral Naming Setup",
+    "price": "Rs. 28000",
+    "image": "img/birthday decoration img/1.jpg ",
+    "category": "NamingCeremony",
+    "description": "Fresh flower decoration for naming ceremony"
+  },
+  {
+    "name": "Minimal Naming Decor",
+    "price": "Rs. 22000",
+    "image": "img/birthday decoration img/1.jpg ",
+    "category": "NamingCeremony",
+    "description": "Simple and elegant naming ceremony setup"
+  }
+]
