@@ -4,11 +4,18 @@
     { "src": "*.html", "use": "@vercel/static" },
     { "src": "*.css", "use": "@vercel/static" },
     { "src": "*.js", "use": "@vercel/static" },
+    { "src": "Data/", "use": "@vercel/static" },
+    { "src": "img/", "use": "@vercel/static" },
     { "src": "server.js", "use": "@vercel/node" }
   ],
   "routes": [
     { "src": "/api/events", "dest": "server.js" },
     { "handle": "filesystem" },
+    { 
+      "src": "/img/(.*)", 
+      "headers": { "cache-control": "s-maxage=604800" },
+      "dest": "/img/$1" 
+    },
     { "src": "/(.*)", "dest": "/$1" }
   ]
 }
