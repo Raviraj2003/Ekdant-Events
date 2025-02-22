@@ -19,7 +19,7 @@
   width: 100px;
 }
 .logo {
-  background-image: url(img/logo.png);
+  background-image: url(/img/logo.png);
   height: 100%;
   width: 100%;
   background-size: 200%;
@@ -202,9 +202,6 @@
     width: 100%;
     cursor: pointer;
     transition: opacity 0.3s;
-  }
-
-  .shop-section {
   }
 
   .box {
