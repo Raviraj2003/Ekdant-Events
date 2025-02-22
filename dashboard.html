@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard - Ekdant Events</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        min-height: 100vh;
+      }
+
+      .form-container {
+        background-color: rgba(247, 246, 246, 0.95);
+        padding: 2.5rem;
+        border-radius: 15px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.514);
+        backdrop-filter: blur(10px);
+        margin-top: 2rem;
+      }
+
+      h1 {
+        text-align: center;
+        color: #2c3e50;
+        margin-bottom: 2rem;
+        font-size: 2.5em;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 0.8rem;
+        font-weight: 600;
+        color: #34495e;
+        font-size: 1.1em;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 1rem;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+        transition: all 0.3s ease;
+        box-sizing: border-box;
+      }
+
+      input:focus,
+      select:focus,
+      textarea:focus {
+        border-color: #3498db;
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+      }
+
+      input[type="file"] {
+        background-color: #f8f9fa;
+        padding: 0.8rem;
+        border: 2px dashed #cbd5e0;
+      }
+
+      button {
+        background: linear-gradient(135deg, #3498db, #2980b9);
+        color: white;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1.1rem;
+        width: 100%;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        margin-top: 1rem;
+      }
+
+      button:hover {
+        background: linear-gradient(135deg, #2980b9, #3498db);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      button:active {
+        transform: translateY(0);
+      }
+
+      .preview-image {
+        max-width: 200px;
+        margin-top: 15px;
+        display: none;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      select {
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        background-size: 1em;
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding: 10px;
+        }
+
+        .form-container {
+          padding: 1.5rem;
+        }
+
+        h1 {
+          font-size: 2em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <h1>Add New Event</h1>
+      <form id="eventForm">
+        <div class="form-group">
+          <label for="eventName">Event Name:</label>
+          <input type="text" id="eventName" name="eventName" required />
+        </div>
+
+        <div class="form-group">
+          <label for="eventPrice">Event Price:</label>
+          <input
+            type="text"
+            id="eventPrice"
+            name="eventPrice"
+            placeholder="Rs. "
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="eventCategory">Category:</label>
+          <select id="eventCategory" name="eventCategory" required>
+            <option value="">Select a category</option>
+            <option value="BirthdayDecoration">Birthday Decoration</option>
+            <option value="Babyshower">Baby Shower</option>
+            <option value="NamingCeremony">Naming Ceremony</option>
+            <option value="WeddingDecoration">Wedding Decoration</option>
+            <option value="BabyWelcome">Baby Welcome</option>
+            <option value="CarDecoration">Car Decoration</option>
+            <option value="FireWorksMachines">FireWorks & Machines</option>
+            <option value="OtherDecoration">Other Decoration</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="eventImage">Event Image:</label>
+          <input
+            type="file"
+            id="eventImage"
+            name="eventImage"
+            accept="image/*"
+            required
+          />
+          <img id="imagePreview" class="preview-image" alt="Preview" />
+        </div>
+
+        <div class="form-group">
+          <label for="eventDescription">Description:</label>
+          <textarea
+            id="eventDescription"
+            name="eventDescription"
+            rows="4"
+            required
+          ></textarea>
+        </div>
+
+        <button type="submit">Add Event</button>
+      </form>
+    </div>
+
+    <script>
+      // Preview image before upload
+      document
+        .getElementById("eventImage")
+        .addEventListener("change", function (e) {
+          const file = e.target.files[0];
+          const preview = document.getElementById("imagePreview");
+
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+              preview.src = e.target.result;
+              preview.style.display = "block";
+            };
+            reader.readAsDataURL(file);
+          }
+        });
+
+      // Replace the existing form submission handler
+
+      document
+        .getElementById("eventForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          try {
+            const file = document.getElementById("eventImage").files[0];
+            const fileName = `${Date.now()}_${file.name}`;
+            const category = document.getElementById("eventCategory").value;
+            const imgPath = `img/${category.toLowerCase()}/${fileName}`;
+
+            // Create new event object
+            const newEvent = {
+              name: document.getElementById("eventName").value,
+              price: document
+                .getElementById("eventPrice")
+                .value.startsWith("Rs. ")
+                ? document.getElementById("eventPrice").value
+                : "Rs. " + document.getElementById("eventPrice").value,
+              image: imgPath,
+              category: category,
+              description: document.getElementById("eventDescription").value,
+            };
+
+            // Read existing JSON file
+            const response = await fetch("./Data/data.json");
+            const existingData = await response.json();
+
+            // Add new event
+            existingData.push(newEvent);
+
+            // Create and download updated JSON file
+            const dataStr = JSON.stringify(existingData, null, 2);
+            const dataBlob = new Blob([dataStr], { type: "application/json" });
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = "data.json";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+
+            // Download image with instructions
+            const imageInstructions = document.createElement("div");
+            imageInstructions.innerHTML = `
+            <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+                        background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
+              <h3>Next Steps:</h3>
+              <ol>
+                <li>Replace the existing data.json file with the downloaded one</li>
+                <li>Save the image (downloading now) to: ${imgPath}</li>
+                <li>Create the directory if it doesn't exist: img/${category.toLowerCase()}/</li>
+              </ol>
+              <button onclick="this.parentElement.remove()">Close</button>
+            </div>
+          `;
+            document.body.appendChild(imageInstructions);
+
+            // Download image
+            const imageUrl = URL.createObjectURL(file);
+            const imageLink = document.createElement("a");
+            imageLink.href = imageUrl;
+            imageLink.download = fileName;
+            document.body.appendChild(imageLink);
+            imageLink.click();
+            document.body.removeChild(imageLink);
+            URL.revokeObjectURL(imageUrl);
+
+            // Reset form
+            this.reset();
+            document.getElementById("imagePreview").style.display = "none";
+          } catch (error) {
+            console.error("Error:", error);
+            alert("Error adding event. Please try again.");
+          }
+        });
+    </script>
+  </body>
+</html>
