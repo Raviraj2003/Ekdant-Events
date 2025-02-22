@@ -4,9 +4,7 @@
     { "src": "*.html", "use": "@vercel/static" },
     { "src": "*.css", "use": "@vercel/static" },
     { "src": "*.js", "use": "@vercel/static" },
-    { "src": "server.js", "use": "@vercel/node" },
-    { "src": "img/", "use": "@vercel/static" },
-    { "src": "Data/", "use": "@vercel/static" }
+    { "src": "server.js", "use": "@vercel/node" }
   ],
   "routes": [
     { "src": "/api/events", "dest": "server.js" },
