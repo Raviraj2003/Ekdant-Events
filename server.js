@@ -14,7 +14,9 @@ app.use(express.static(__dirname));
 
 // Configure multer for file upload
 const storage = multer.diskStorage({
+  
   destination: async function (req, file, cb) {
+    console.log(4);
     const category = req.body.category.toLowerCase();
     const dir = `img/${category}`;
     try {
