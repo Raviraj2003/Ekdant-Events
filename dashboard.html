@@ -233,6 +233,8 @@ console.log(111);
               document.getElementById("eventImage").files[0]
             );
 
+            console.log(formData);
+            
             const response = await fetch("https://ekdant-events.vercel.app/api/events", {
               method: "POST",
               body: formData,
