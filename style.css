@@ -295,3 +295,23 @@
 
 
 
+/* Footer section starts here----------------------------------------------------------------------- */
+
+
+.footer{
+  height: 400px;
+  width: 100%;
+  background-color: #2c033b;
+
+}
+.all{
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+  
+
+}
+.wp{
+  height: 50px;
+  width: 50px;
+}
