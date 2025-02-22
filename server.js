@@ -32,13 +32,14 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-// API Endpoints
+
 app.post("/api/events", upload.single("image"), async (req, res) => {
   try {
-    console.log(req.body);
+    console.log("Request body:", req.body); // Log body content
+    console.log("File info:", req.file);   // Log file upload information
     
     const { name, price, category, description } = req.body;
-    const imagePath = req.file.path.replace(/\\/g, "/");
+    const imagePath = req.file ? req.file.path.replace(/\\/g, "/") : "";
 
     const newEvent = {
       name,
@@ -61,11 +62,7 @@ app.post("/api/events", upload.single("image"), async (req, res) => {
 
     res.json({ success: true, message: "Event added successfully" });
   } catch (error) {
-    console.error("Error:", error);
+    console.error("Error in /api/events:", error);  // Log the error
     res.status(500).json({ success: false, message: "Error adding event" });
   }
-});
-
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
 });
