@@ -1,70 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
     <header>
-        <div class="nav-bar">
-            <div class="nav-logo ">
-                <div class="logo" onclick="location.href='index.html'"></div>
+      <div class="nav-bar">
+        <div class="nav-logo">
+          <div class="logo" onclick="location.href='index.html'"></div>
+        </div>
+        <div class="menu"><i class="fa-solid fa-bars"></i></div>
+      </div>
+      <!-- Sidebar Menu -->
+      <div class="sidebar">
+        <span class="close-btn">&times;</span>
+        <!-- Close button -->
+        <div class="sidebar-logo"></div>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="hero-section2">
+        <div class="hero-img">
+          <div class="contact">
+            <h1>CONTACT US</h1>
+            <div class="adjust">
+              <div class="phone-no c">
+                <i class="fa-solid fa-square-phone"></i>
+                <a href="tel:+919373637972">+91 9373637972</a>
+              </div>
+              <div class="Whatsapp c">
+                <i class="fa-brands fa-square-whatsapp"></i>
+                <a href="https://wa.me/9373637972 "> +91 9373637972 </a>
+              </div>
+
+              <div class="address c">
+                <i class="fa-solid fa-address-card"></i>
+                <p class="Address c">Shivapure, Pune, Near Datta Mandir</p>
+              </div>
+              <div class="insta c">
+                <i class="fa-brands fa-square-instagram"></i>
+                <a
+                  href="https://www.instagram.com/ekdant_event_9777"
+                  target="_blank"
+                  >ekdant_event_9777</a
+                >
+              </div>
             </div>
-            <div class="menu"><i class="fa-solid fa-bars"></i></div>
+          </div>
         </div>
-          <!-- Sidebar Menu -->
-        <div class="sidebar">
-            <span class="close-btn">&times;</span> <!-- Close button -->
-            <div class="sidebar-logo"></div>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
+        <div class="map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d946.7950926592987!2d73.8389974!3d18.3390539!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc292d489a9a0ad%3A0x18294de400d6eb7c!2sKhed%20Shivapur%2C%20Maharashtra%20412205!5e0!3m2!1sen!2sin!4v1740145453169!5m2!1sen!2sin"
+            width="600"
+            height="450"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            class="map-iframe"
+          ></iframe>
         </div>
-        
-        <div class="hero-section2">
-            <div class="hero-img">
-                <div class="contact">
-                    <h1>CONTACT US</h1>
-                    <div class="adjust">
-                        <div class="phone-no c">
-                            <i class="fa-solid fa-square-phone"></i>
-                            <a href="tel:+919373637972">+91 9373637972</a>
-                        </div>
-                        <div class="Whatsapp c">
-                            <i class="fa-brands fa-square-whatsapp"></i>
-                            <a href='https://wa.me/9373637972 '>
-                            +91 9373637972
-                            </a>
-                        </div>
-                        
-                        <div class="address c">
-                            <i class="fa-solid fa-address-card"></i>
-                            <p class="Address c">Shivapure, Pune, Near Datta Mandir</p>
-                        </div>
-                        <div class="insta c">
-                            <i class="fa-brands fa-square-instagram"></i>
-                            <a href="https://www.instagram.com/ekdant_event_9777" target="_blank">ekdant_event_9777</a>
-
-                        </div>
-                    </div>
-            </div>
-        </div>
-            <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;" class="map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d946.7950926592987!2d73.8389974!3d18.3390539!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc292d489a9a0ad%3A0x18294de400d6eb7c!2sKhed%20Shivapur%2C%20Maharashtra%20412205!5e0!3m2!1sen!2sin!4v1740145453169!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="map"></iframe>
-            </div>
-            
-
-        </div>
-
-
+      </div>
     </header>
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
