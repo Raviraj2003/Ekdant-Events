@@ -213,7 +213,7 @@
 }
 
 /* CONTACT SECTION START HERE ------------------------------------------------------- */
-.hero-section2{
+.hero-section2 {
   background-image: url(img/contact/img1.jpg);
   background-size: cover;
   background-position: center;
@@ -226,50 +226,49 @@
   justify-content: center;
   margin-top: 10px;
   font-size: 25px;
-  box-shadow: 10px 10px 20px rgba(0.5, 0.5, 0.5, 0.5); border-radius: 10px;
+  box-shadow: 10px 10px 20px rgba(0.5, 0.5, 0.5, 0.5);
+  border-radius: 10px;
 }
-.hero-img h1{
-    margin-bottom: 40px;
-    color: white;
-    text-shadow: 4px 4px 10px gray;
-    font-size: 60px;
-    
-    
+.hero-img h1 {
+  margin-bottom: 40px;
+  color: white;
+  text-shadow: 4px 4px 10px gray;
+  font-size: 60px;
 }
-.hero-section2 i{
-    font-size: 50px;
-    text-shadow: 4px 4px 10px white;
+.hero-section2 i {
+  font-size: 50px;
+  text-shadow: 4px 4px 10px white;
 }
-.hero-section2 a{
+.hero-section2 a {
   margin-left: 30px;
   color: black;
   text-shadow: 4px 4px 10px white;
 }
-.adjust{
+.adjust {
   width: 400px;
 }
 
-.c{
+.c {
   display: flex;
   align-items: center;
   margin-left: 25px;
   margin-top: 10px;
   margin-bottom: 10px;
-
 }
-
 
 .map {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  padding: 20px 0px;
 }
 
-
 @media (max-width: 768px) {
+  .hero-section2 {
+    height: 100vh;
+  }
   .hero-img {
-    height: 350px; 
-    font-size: 16px; 
+    height: 350px;
+    font-size: 16px;
   }
 
   .hero-img h1 {
@@ -288,30 +287,29 @@
   }
 
   .adjust {
-    width: 100%; 
+    width: 100%;
     max-width: 300px;
+  }
+
+  .map-iframe {
+    width: 80%;
+    height: 300px;
   }
 }
 
-
-
 /* Footer section starts here----------------------------------------------------------------------- */
 
-
-.footer{
+.footer {
   height: 400px;
   width: 100%;
   background-color: #2c033b;
-
 }
-.all{
+.all {
   display: flex;
   justify-content: space-evenly;
   text-align: center;
-  
-
 }
-.wp{
+.wp {
   height: 50px;
   width: 50px;
 }
