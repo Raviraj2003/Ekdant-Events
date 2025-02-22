@@ -151,13 +151,13 @@
           <select id="eventCategory" name="eventCategory" required>
             <option value="">Select a category</option>
             <option value="BirthdayDecoration">Birthday Decoration</option>
-            <option value="Babyshower">Baby Shower</option>
+            <option value="BabyShower">Baby Shower</option>
             <option value="NamingCeremony">Naming Ceremony</option>
             <option value="WeddingDecoration">Wedding Decoration</option>
             <option value="BabyWelcome">Baby Welcome</option>
             <option value="CarDecoration">Car Decoration</option>
-            <option value="FireWorksMachines">FireWorks & Machines</option>
-            <option value="OtherDecoration">Other Decoration</option>
+            <option value="FierworksAndMachines">FireWorks & Machines</option>
+            <option value="OtherDecorations">Other Decoration</option>
           </select>
         </div>
 
@@ -213,72 +213,39 @@
           e.preventDefault();
 
           try {
-            const file = document.getElementById("eventImage").files[0];
-            const fileName = `${Date.now()}_${file.name}`;
-            const category = document.getElementById("eventCategory").value;
-            const imgPath = `img/${category.toLowerCase()}/${fileName}`;
+            const formData = new FormData();
+            formData.append("name", document.getElementById("eventName").value);
+            formData.append(
+              "price",
+              document.getElementById("eventPrice").value
+            );
+            formData.append(
+              "category",
+              document.getElementById("eventCategory").value
+            );
+            formData.append(
+              "description",
+              document.getElementById("eventDescription").value
+            );
+            formData.append(
+              "image",
+              document.getElementById("eventImage").files[0]
+            );
 
-            // Create new event object
-            const newEvent = {
-              name: document.getElementById("eventName").value,
-              price: document
-                .getElementById("eventPrice")
-                .value.startsWith("Rs. ")
-                ? document.getElementById("eventPrice").value
-                : "Rs. " + document.getElementById("eventPrice").value,
-              image: imgPath,
-              category: category,
-              description: document.getElementById("eventDescription").value,
-            };
+            const response = await fetch("/api/events", {
+              method: "POST",
+              body: formData,
+            });
 
-            // Read existing JSON file
-            const response = await fetch("./Data/data.json");
-            const existingData = await response.json();
+            const result = await response.json();
 
-            // Add new event
-            existingData.push(newEvent);
-
-            // Create and download updated JSON file
-            const dataStr = JSON.stringify(existingData, null, 2);
-            const dataBlob = new Blob([dataStr], { type: "application/json" });
-            const url = URL.createObjectURL(dataBlob);
-            const link = document.createElement("a");
-            link.href = url;
-            link.download = "data.json";
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(url);
-
-            // Download image with instructions
-            const imageInstructions = document.createElement("div");
-            imageInstructions.innerHTML = `
-            <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
-                        background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
-              <h3>Next Steps:</h3>
-              <ol>
-                <li>Replace the existing data.json file with the downloaded one</li>
-                <li>Save the image (downloading now) to: ${imgPath}</li>
-                <li>Create the directory if it doesn't exist: img/${category.toLowerCase()}/</li>
-              </ol>
-              <button onclick="this.parentElement.remove()">Close</button>
-            </div>
-          `;
-            document.body.appendChild(imageInstructions);
-
-            // Download image
-            const imageUrl = URL.createObjectURL(file);
-            const imageLink = document.createElement("a");
-            imageLink.href = imageUrl;
-            imageLink.download = fileName;
-            document.body.appendChild(imageLink);
-            imageLink.click();
-            document.body.removeChild(imageLink);
-            URL.revokeObjectURL(imageUrl);
-
-            // Reset form
-            this.reset();
-            document.getElementById("imagePreview").style.display = "none";
+            if (result.success) {
+              alert("Event added successfully!");
+              this.reset();
+              document.getElementById("imagePreview").style.display = "none";
+            } else {
+              throw new Error(result.message);
+            }
           } catch (error) {
             console.error("Error:", error);
             alert("Error adding event. Please try again.");
