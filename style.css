@@ -273,6 +273,27 @@
     text-align: center;
 }
 
+.contact{
+    margin-top: 20px;
+    font-size: 20px;
+}
+.contact i{
+    font-size: 20px;
+}
+.wp-btn{
+    font-size: 20px;
+}
+.address{
+    display: flex;
+}
+.map{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+
+
 
 
 @media (max-width: 768px){
