@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let category = document.location.pathname.slice(1).split(".")[0];
   console.log(category);
 
-  fetch("./Data/data.json")
+  fetch("/Data/data.json")
     .then((response) => response.json())
     .then((products) => {
       console.log(products);
