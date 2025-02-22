@@ -1,14 +1,16 @@
 const express = require("express");
 const multer = require("multer");
 const path = require("path");
+const cors = require("cors");
 const fs = require("fs").promises;
 const app = express();
 const port = 3000;
 
 // Middleware
+app.use(cors());    
 app.use(express.json());
 app.use(express.static(__dirname));
-app.use('/img', express.static(path.join(__dirname, 'img')));
+
 
 // Configure multer for file upload
 const storage = multer.diskStorage({
