@@ -33,15 +33,16 @@ async function connectToMongoDB() {
 
     // Configure multer for memory storage
     const storage = multer.memoryStorage();
-    const upload = multer({ 
+    const upload = multer({
       storage: storage,
       fileFilter: function (req, file, cb) {
-        if (file.fieldname === 'eventImage') { // Match the field name from client
+        if (file.fieldname === "eventImage") {
+          // Match the field name from client
           cb(null, true);
         } else {
-          cb(new Error('Unexpected field name'));
+          cb(new Error("Unexpected field name"));
         }
-      }
+      },
     });
 
     // POST endpoint to add an event
@@ -58,11 +59,13 @@ async function connectToMongoDB() {
           price: price.startsWith("Rs. ") ? price : `Rs. ${price}`,
           category,
           description,
-          image: req.file ? {
-            data: req.file.buffer,
-            contentType: req.file.mimetype,
-            filename: req.file.originalname,
-          } : null,
+          image: req.file
+            ? {
+                data: req.file.buffer,
+                contentType: req.file.mimetype,
+                filename: req.file.originalname,
+              }
+            : null,
           createdAt: new Date(),
         };
 
@@ -78,7 +81,7 @@ async function connectToMongoDB() {
         console.error("Error in /api/events:", error);
         res.status(500).json({
           success: false,
-          message: error.message || "Error adding event"
+          message: error.message || "Error adding event",
         });
       }
     });
@@ -135,6 +138,12 @@ async function connectToMongoDB() {
     app.post("/api/login", (req, res) => {
       const { password } = req.body;
 
+      console.log(password);
+      console.log(typeof password);
+      console.log(process.env.ADMIN_PASSWORD);
+      console.log(typeof process.env.ADMIN_PASSWORD);
+      
+
       if (password == process.env.ADMIN_PASSWORD) {
         res.json({ success: true });
       } else {
@@ -165,48 +174,55 @@ async function connectToMongoDB() {
     });
 
     // PUT endpoint to update an event
-    app.put("/api/events/:id", upload.single("eventImage"), async (req, res) => {
-      try {
-        const { name, price, category, description } = req.body;
+    app.put(
+      "/api/events/:id",
+      upload.single("eventImage"),
+      async (req, res) => {
+        try {
+          const { name, price, category, description } = req.body;
 
-        const updateData = {
-          name,
-          price: price.startsWith("Rs. ") ? price : `Rs. ${price}`,
-          category,
-          description,
-          updatedAt: new Date(),
-        };
-
-        // Only update image if a new one is provided
-        if (req.file) {
-          updateData.image = {
-            data: req.file.buffer,
-            contentType: req.file.mimetype,
-            filename: req.file.originalname,
+          const updateData = {
+            name,
+            price: price.startsWith("Rs. ") ? price : `Rs. ${price}`,
+            category,
+            description,
+            updatedAt: new Date(),
           };
+
+          // Only update image if a new one is provided
+          if (req.file) {
+            updateData.image = {
+              data: req.file.buffer,
+              contentType: req.file.mimetype,
+              filename: req.file.originalname,
+            };
+          }
+
+          const result = await db
+            .collection("events")
+            .updateOne(
+              { _id: new ObjectId(req.params.id) },
+              { $set: updateData }
+            );
+
+          if (result.matchedCount === 0) {
+            return res
+              .status(404)
+              .json({ success: false, message: "Event not found" });
+          }
+
+          res.json({ success: true, message: "Event updated successfully" });
+        } catch (error) {
+          console.error("Error updating event:", error);
+          res
+            .status(500)
+            .json({
+              success: false,
+              message: error.message || "Error updating event",
+            });
         }
-
-        const result = await db
-          .collection("events")
-          .updateOne(
-            { _id: new ObjectId(req.params.id) },
-            { $set: updateData }
-          );
-
-        if (result.matchedCount === 0) {
-          return res
-            .status(404)
-            .json({ success: false, message: "Event not found" });
-        }
-
-        res.json({ success: true, message: "Event updated successfully" });
-      } catch (error) {
-        console.error("Error updating event:", error);
-        res
-          .status(500)
-          .json({ success: false, message: error.message || "Error updating event" });
       }
-    });
+    );
 
     // DELETE endpoint to remove an event
     app.delete("/api/events/:id", async (req, res) => {
