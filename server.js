@@ -3,6 +3,8 @@ const express = require("express");
 const multer = require("multer");
 const { MongoClient, ObjectId } = require("mongodb");
 const app = express();
+const cors = require("cors");
+app.use(cors());
 const port = 3000;
 
 // MongoDB connection URL from environment variable
