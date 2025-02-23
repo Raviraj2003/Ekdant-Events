@@ -206,12 +206,10 @@
         });
 
       // Replace the existing form submission handler
-
       document
         .getElementById("eventForm")
         .addEventListener("submit", async function (e) {
           e.preventDefault();
-          console.log(111);
 
           try {
             const formData = new FormData();
@@ -233,10 +231,8 @@
               document.getElementById("eventImage").files[0]
             );
 
-            console.log(formData);
-
             const response = await fetch(
-              "/api/events",
+              "https://ekdant-events.vercel.app/api/events",
               {
                 method: "POST",
                 body: formData,
