@@ -124,6 +124,89 @@
           font-size: 2em;
         }
       }
+
+      .events-list {
+        margin-top: 2rem;
+        padding: 2rem;
+        background-color: rgba(247, 246, 246, 0.95);
+        border-radius: 15px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.514);
+      }
+
+      #events-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+        padding: 1rem;
+      }
+
+      .event-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .event-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .event-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .event-info {
+        padding: 1rem;
+      }
+
+      .event-info h3 {
+        margin: 0 0 0.5rem 0;
+        color: #2c3e50;
+      }
+
+      .event-info p {
+        margin: 0.5rem 0;
+        color: #666;
+      }
+
+      .event-actions {
+        padding: 1rem;
+        display: flex;
+        gap: 1rem;
+        justify-content: flex-end;
+        background: #f8f9fa;
+      }
+
+      .edit-btn, .delete-btn {
+        padding: 0.5rem 1.5rem;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        color: white;
+      }
+
+      .edit-btn {
+        background-color: #2ecc71;
+      }
+
+      .edit-btn:hover {
+        background-color: #27ae60;
+      }
+
+      .delete-btn {
+        background-color: #e74c3c;
+      }
+
+      .delete-btn:hover {
+        background-color: #c0392b;
+      }
     </style>
   </head>
   <body>
@@ -187,6 +270,11 @@
       </form>
     </div>
 
+    <div class="events-list">
+      <h2>All Events</h2>
+      <div id="events-container"></div>
+    </div>
+
     <script>
       // Preview image before upload
       document
@@ -205,54 +293,163 @@
           }
         });
 
-      // Replace the existing form submission handler
-      document
-        .getElementById("eventForm")
-        .addEventListener("submit", async function (e) {
-          e.preventDefault();
+      // Replace the loadEvents function in dashboard.html
+      async function loadEvents() {
+        try {
+          const response = await fetch('/api/events');
+          const events = await response.json();
+          const container = document.getElementById('events-container');
+          container.innerHTML = '';
 
+          events.forEach(event => {
+            const card = document.createElement('div');
+            card.className = 'event-card';
+            card.innerHTML = `
+              <img src="/api/events/${event._id}/image" class="event-image" alt="${event.name}" onerror="this.src='placeholder.jpg'">
+              <div class="event-info">
+                <h3>${event.name}</h3>
+                <p><strong>Price:</strong> ${event.price}</p>
+                <p><strong>Category:</strong> ${event.category}</p>
+                <p><strong>Description:</strong> ${event.description}</p>
+              </div>
+              <div class="event-actions">
+                <button onclick="editEvent('${event._id}')" class="edit-btn">Edit</button>
+                <button onclick="deleteEvent('${event._id}')" class="delete-btn">Delete</button>
+              </div>
+            `;
+            container.appendChild(card);
+          });
+        } catch (error) {
+          console.error('Error loading events:', error);
+          const container = document.getElementById('events-container');
+          container.innerHTML = '<p style="text-align: center; color: #e74c3c;">Error loading events. Please try again later.</p>';
+        }
+      }
+
+      // Function to edit event
+      async function editEvent(id) {
+        try {
+          const response = await fetch(`/api/events/${id}`);
+          const event = await response.json();
+          
+          // Fill the form with event data
+          document.getElementById('eventName').value = event.name;
+          document.getElementById('eventPrice').value = event.price;
+          document.getElementById('eventCategory').value = event.category;
+          document.getElementById('eventDescription').value = event.description;
+          
+          // Change the form's data-mode and store the event ID
+          const form = document.getElementById('eventForm');
+          form.setAttribute('data-mode', 'edit');
+          form.setAttribute('data-event-id', id);
+          
+          // Make image field not required for edit mode
+          toggleImageRequired(true);
+          
+          // Change button text
+          const submitButton = form.querySelector('button[type="submit"]');
+          submitButton.textContent = 'Update Event';
+          
+          // Scroll to form
+          document.querySelector('.form-container').scrollIntoView({ behavior: 'smooth' });
+        } catch (error) {
+          console.error('Error loading event:', error);
+          alert('Error loading event for editing');
+        }
+      }
+
+      // Function to delete event
+      async function deleteEvent(id) {
+        console.log(id);
+        
+        if (confirm('Are you sure you want to delete this event?')) {
           try {
-            const formData = new FormData();
-            formData.append("name", document.getElementById("eventName").value);
-            formData.append(
-              "price",
-              document.getElementById("eventPrice").value
-            );
-            formData.append(
-              "category",
-              document.getElementById("eventCategory").value
-            );
-            formData.append(
-              "description",
-              document.getElementById("eventDescription").value
-            );
-            formData.append(
-              "image",
-              document.getElementById("eventImage").files[0]
-            );
-
-            const response = await fetch(
-              "https://ekdant-events.vercel.app/api/events",
-              {
-                method: "POST",
-                body: formData,
-              }
-            );
-
+            const response = await fetch(`/api/events/${id}`, {
+              method: 'DELETE'
+            });
             const result = await response.json();
-
+            console.log(result);
+            
             if (result.success) {
-              alert("Event added successfully!");
-              this.reset();
-              document.getElementById("imagePreview").style.display = "none";
-            } else {
-              throw new Error(result.message);
+              loadEvents(); // Refresh the list
             }
           } catch (error) {
-            console.error("Error:", error);
-            alert("Error adding event. Please try again.");
+            console.error('Error deleting event:', error);
           }
-        });
+        }
+      }
+
+      // Load events when page loads
+      document.addEventListener('DOMContentLoaded', loadEvents);
+
+      // Replace the form submission handler in dashboard.html
+
+      document.getElementById('eventForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const form = this;
+        const formData = new FormData();
+        const isEdit = form.getAttribute('data-mode') === 'edit';
+        const eventId = form.getAttribute('data-event-id');
+        
+        try {
+          // Make sure field names match between client and server
+          formData.append('name', document.getElementById('eventName').value);
+          formData.append('price', document.getElementById('eventPrice').value);
+          formData.append('category', document.getElementById('eventCategory').value);
+          formData.append('description', document.getElementById('eventDescription').value);
+          
+          // Make sure this field name matches the multer configuration
+          const imageFile = document.getElementById('eventImage').files[0];
+          if (imageFile) {
+            formData.append('eventImage', imageFile);
+          }
+          
+          const url = isEdit ? `/api/events/${eventId}` : '/api/events';
+          const method = isEdit ? 'PUT' : 'POST';
+          
+          const response = await fetch(url, {
+            method: method,
+            body: formData
+          });
+
+          const result = await response.json();
+          if (result.success) {
+            alert(isEdit ? 'Event updated successfully!' : 'Event added successfully!');
+            
+            // Reset form and attributes
+            form.reset();
+            form.removeAttribute('data-mode');
+            form.removeAttribute('data-event-id');
+            document.getElementById('imagePreview').style.display = 'none';
+            
+            // Reset button text
+            const submitButton = form.querySelector('button[type="submit"]');
+            submitButton.textContent = 'Add Event';
+            
+            // Make image field required again for new events
+            toggleImageRequired(false);
+            
+            // Refresh the events list
+            loadEvents();
+          } else {
+            throw new Error(result.message);
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          alert('Error saving event. Please try again.');
+        }
+      });
+
+      // Add this function after your existing script
+      function toggleImageRequired(isEdit) {
+        const imageInput = document.getElementById('eventImage');
+        if (isEdit) {
+          imageInput.removeAttribute('required');
+        } else {
+          imageInput.setAttribute('required', 'required');
+        }
+      }
+   
     </script>
   </body>
 </html>

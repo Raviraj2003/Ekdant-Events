@@ -25,23 +25,24 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   let category = document.location.pathname.slice(1).split(".")[0];
-  console.log(category);
+  console.log("Category:", category);
 
-  fetch("/Data/data.json")
+  // Fetch events from MongoDB API
+  fetch("/api/events")
     .then((response) => response.json())
-    .then((products) => {
-      console.log(products);
-      const filteredProducts = products.filter(
-        (product) => product.category === category
+    .then((events) => {
+      console.log("All events:", events);
+      const filteredEvents = events.filter(
+        (event) => event.category === category
       );
-      console.log(filteredProducts);
+      console.log("Filtered events:", filteredEvents);
 
       const displaySection = document.getElementById("product-display");
       displaySection.innerHTML = "";
 
-      filteredProducts.forEach((product) => {
+      filteredEvents.forEach((event) => {
         const productCard = document.createElement("div");
-        productCard.classList.add("product-card", product.category);
+        productCard.classList.add("product-card", event.category);
 
         // Create image container
         const imgContainer = document.createElement("div");
@@ -49,34 +50,39 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Add product image
         const img = document.createElement("img");
-        img.src = product.image;
-        img.alt = product.name;
-        img.addEventListener("click", () => createImagePopup(product.image));
+        img.src = `/api/events/${event._id}/image`; // Use MongoDB image endpoint
+        img.alt = event.name;
+        img.addEventListener("click", () => createImagePopup(`/api/events/${event._id}/image`));
         imgContainer.appendChild(img);
         productCard.appendChild(imgContainer);
 
         // Add product name
         const title = document.createElement("h3");
-        title.textContent = product.name;
+        title.textContent = event.name;
         productCard.appendChild(title);
 
         // Add product price
         const price = document.createElement("p");
-        price.textContent = product.price;
+        price.textContent = event.price;
         productCard.appendChild(price);
 
+        // Add product description
         const description = document.createElement("p");
-        description.textContent = product.description;
+        description.textContent = event.description;
         productCard.appendChild(description);
 
         // Append card to display section
         displaySection.appendChild(productCard);
       });
     })
-    .catch((error) => console.error("Error loading products:", error));
+    .catch((error) => {
+      console.error("Error loading events:", error);
+      const displaySection = document.getElementById("product-display");
+      displaySection.innerHTML = "<p>Error loading events. Please try again later.</p>";
+    });
 });
 
-// Add this function for creating the popup
+// Update image popup function
 function createImagePopup(imageSrc) {
   const popup = document.createElement("div");
   popup.classList.add("image-popup");

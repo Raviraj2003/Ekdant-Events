@@ -77,21 +77,30 @@
     </div>
 
     <script>
-      function validateLogin(event) {
+      async function validateLogin(event) {
         event.preventDefault();
         const password = document.getElementById("password").value;
-        const errorMessage = document.getElementById("errorMessage");
-
-        // Change this to your desired password
-        const correctPassword = "111";
-
-        if (password === correctPassword) {
-          window.location.href = "dashboard.html";
-        } else {
-          errorMessage.style.display = "block";
-          document.getElementById("password").value = "";
+        
+        try {
+          const response = await fetch('/api/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ password })
+          });
+          
+          const data = await response.json();
+          
+          if (data.success) {
+            window.location.href = '/dashboard.html';
+          } else {
+            document.getElementById("errorMessage").style.display = "block";
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          document.getElementById("errorMessage").style.display = "block";
         }
-        return false;
       }
     </script>
   </body>
