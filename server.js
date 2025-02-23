@@ -135,7 +135,7 @@ async function connectToMongoDB() {
     app.post("/api/login", (req, res) => {
       const { password } = req.body;
 
-      if (password === process.env.ADMIN_PASSWORD) {
+      if (password == process.env.ADMIN_PASSWORD) {
         res.json({ success: true });
       } else {
         res.json({ success: false });
