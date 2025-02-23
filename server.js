@@ -1,22 +1,17 @@
 const express = require("express");
 const multer = require("multer");
 const path = require("path");
-const cors = require("cors");
 const fs = require("fs").promises;
 const app = express();
 const port = 3000;
 
 // Middleware
-app.use(cors());    
 app.use(express.json());
 app.use(express.static(__dirname));
 
-
 // Configure multer for file upload
 const storage = multer.diskStorage({
-  
   destination: async function (req, file, cb) {
-    console.log(4);
     const category = req.body.category.toLowerCase();
     const dir = `img/${category}`;
     try {
@@ -34,12 +29,9 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-
 app.post("/api/events", upload.single("image"), async (req, res) => {
   try {
-    console.log("Request body:", req.body); // Log body content
-    console.log("File info:", req.file);   // Log file upload information
-    
+
     const { name, price, category, description } = req.body;
     const imagePath = req.file ? req.file.path.replace(/\\/g, "/") : "";
 
@@ -64,7 +56,11 @@ app.post("/api/events", upload.single("image"), async (req, res) => {
 
     res.json({ success: true, message: "Event added successfully" });
   } catch (error) {
-    console.error("Error in /api/events:", error);  // Log the error
+    console.error("Error in /api/events:", error); // Log the error
     res.status(500).json({ success: false, message: "Error adding event" });
   }
+});
+
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
 });
