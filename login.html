@@ -80,26 +80,28 @@
       async function validateLogin(event) {
         event.preventDefault();
         const password = document.getElementById("password").value;
-        
+
         try {
-          const response = await fetch('/api/login', {
-            method: 'POST',
+          const response = await fetch("/api/login", {
+            method: "POST",
             headers: {
-              'Content-Type': 'application/json',
+              "Content-Type": "application/json",
             },
-            body: JSON.stringify({ password })
+            body: JSON.stringify({ password }),
+            credentials: "include", // Add this
           });
-          
+
           const data = await response.json();
-          console.log(data);
-          
+
           if (data.success) {
-            window.location.href = '/dashboard.html';
+            window.location.href = "/dashboard.html";
           } else {
             document.getElementById("errorMessage").style.display = "block";
           }
         } catch (error) {
-          console.error('Error:', error);
+          console.error("Error:", error);
+          document.getElementById("errorMessage").textContent =
+            "Server error. Please try again.";
           document.getElementById("errorMessage").style.display = "block";
         }
       }

@@ -6,7 +6,13 @@ const cors = require("cors");
 const Event = require("./models/Event");
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+  })
+);
+app.use(express.json());
 const port = 3000;
 
 // Configure multer for memory storage
@@ -27,11 +33,16 @@ mongoose
   .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 5000,
+    retryWrites: true,
   })
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => {
     console.error("Error connecting to MongoDB:", err);
-    process.exit(1);
+    // Don't exit process in production
+    if (process.env.NODE_ENV !== "production") {
+      process.exit(1);
+    }
   });
 
 app.use(express.json());
@@ -113,10 +124,16 @@ app.get("/api/events/:id/image", async (req, res) => {
 // POST endpoint for login
 app.post("/api/login", (req, res) => {
   const { password } = req.body;
-  if (password == process.env.ADMIN_PASSWORD) {
+  console.log("Login attempt with password:", password); // For debugging
+  console.log("Expected password:", process.env.ADMIN_PASSWORD); // For debugging
+
+  if (password === process.env.ADMIN_PASSWORD) {
     res.json({ success: true });
   } else {
-    res.json({ success: false });
+    res.status(401).json({
+      success: false,
+      message: "Invalid password",
+    });
   }
 });
 
@@ -204,6 +221,33 @@ app.delete("/api/events/:id", async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-});
+if (process.env.NODE_ENV !== "production") {
+  app.listen(port, () => {
+    console.log(`Server running at http://localhost:${port}`);
+  });
+}
+
+module.exports = app;
+
+fetch("/api/events")
+  .then(async (response) => {
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(
+        `HTTP error! status: ${response.status}, message: ${errorText}`
+      );
+    }
+    return response.json();
+  })
+  .then((events) => {
+    // ... rest of your code
+  })
+  .catch((error) => {
+    console.error("Error loading events:", error);
+    // Show user-friendly error message
+    const displaySection = document.getElementById("product-display");
+    if (displaySection) {
+      displaySection.innerHTML =
+        "<p class='error-message'>Error loading events. Please try again later.</p>";
+    }
+  });
