@@ -228,26 +228,3 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 module.exports = app;
-
-fetch("/api/events")
-  .then(async (response) => {
-    if (!response.ok) {
-      const errorText = await response.text();
-      throw new Error(
-        `HTTP error! status: ${response.status}, message: ${errorText}`
-      );
-    }
-    return response.json();
-  })
-  .then((events) => {
-    // ... rest of your code
-  })
-  .catch((error) => {
-    console.error("Error loading events:", error);
-    // Show user-friendly error message
-    const displaySection = document.getElementById("product-display");
-    if (displaySection) {
-      displaySection.innerHTML =
-        "<p class='error-message'>Error loading events. Please try again later.</p>";
-    }
-  });
