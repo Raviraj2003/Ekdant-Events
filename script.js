@@ -28,8 +28,17 @@ document.addEventListener("DOMContentLoaded", function () {
   console.log("Category:", category);
 
   // Fetch events from MongoDB API
-  fetch("/api/events")
-    .then((response) => response.json())
+  const apiUrl = window.location.origin + "/api/events";
+  fetch(apiUrl)
+    .then(async (response) => {
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(
+          `HTTP error! status: ${response.status}, message: ${errorText}`
+        );
+      }
+      return response.json();
+    })
     .then((events) => {
       console.log("All events:", events);
       const filteredEvents = events.filter(
@@ -52,7 +61,9 @@ document.addEventListener("DOMContentLoaded", function () {
         const img = document.createElement("img");
         img.src = `/api/events/${event._id}/image`; // Use MongoDB image endpoint
         img.alt = event.name;
-        img.addEventListener("click", () => createImagePopup(`/api/events/${event._id}/image`));
+        img.addEventListener("click", () =>
+          createImagePopup(`/api/events/${event._id}/image`)
+        );
         imgContainer.appendChild(img);
         productCard.appendChild(imgContainer);
 
@@ -78,7 +89,10 @@ document.addEventListener("DOMContentLoaded", function () {
     .catch((error) => {
       console.error("Error loading events:", error);
       const displaySection = document.getElementById("product-display");
-      displaySection.innerHTML = "<p>Error loading events. Please try again later.</p>";
+      if (displaySection) {
+        displaySection.innerHTML =
+          "<p class='error-message'>Error loading events. Please try again later.</p>";
+      }
     });
 });
 
